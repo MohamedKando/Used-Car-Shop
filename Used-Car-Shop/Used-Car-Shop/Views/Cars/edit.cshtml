@@ -1,0 +1,161 @@
+﻿@model Used_Car_Shop.DataTransferObjebt.CarEditDto
+@{
+    ViewData["Title"] = "Car Price Prediction";
+}
+@if (TempData["Success"] != null)
+{
+    <div class="alert alert-success">
+        @TempData["Success"]
+    </div>
+}
+<div class="container py-5">
+    <div class="card shadow-lg border-0 rounded-3">
+        <div class="card-header bg-primary text-white p-4">
+            <h2 class="mb-0">
+                <i class="bi bi-car-front me-2"></i>
+                Car Details & Price Prediction
+            </h2>
+        </div>
+
+        <div class="card-body p-4">
+            <form asp-controller="Car" asp-action="PredictCarPrice" method="post" enctype="multipart/form-data">
+                <div asp-validation-summary="All" class="text-danger alert alert-danger mb-4" role="alert"></div>
+
+                <div class="row g-4">
+                    <!-- Left Column -->
+                    <div class="col-md-6">
+                        <div class="card h-100 bg-light border-0">
+                            <div class="card-body">
+                                <h4 class="card-title mb-4 text-primary">
+                                    <i class="bi bi-info-circle me-2"></i>Car Specifications
+                                </h4>
+
+@*                                 <input type="hidden" name="BrandId" id="HiddenBrandId" value="@Model.BrandId" />
+                                <input type="hidden" name="ModelId" id="HiddenBrandId" value="@Model.ModelId" />
+
+                                <input type="hidden" name="tranmission" id="HiddenBrandId" value="@Model.tranmission" />
+
+                                <input type="hidden" name="AirConditioner" id="HiddenBrandId" value="@Model.AirConditioner" />
+                                <input type="hidden" name="RemoteControl" id="HiddenBrandId" value="@Model.RemoteControl" />
+                                <input type="hidden" name="PowerSteering" id="HiddenBrandId" value="@Model.PowerSteering" />
+                                <input type="hidden" name="Gov" id="HiddenBrandId" value="@Model.Gov" />
+                                <input type="hidden" name="milage" id="milage" value="@Model.milage" />
+                                <input type="hidden" name="year" id="year" value="@Model.year" /> *@
+
+                                <div class="d-flex justify-content-center pt-4 ">
+                                    <img class="cover-preview  " alt="Cover" style="max-width:500px; max-height:500px" src="@($"/Images/{Model.CurrentCover}")" />
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Right Column -->
+                    <div class="col-md-6">
+                        <div class="card h-100 bg-light border-0">
+                            <div class="card-body">
+                                <h4 class="card-title mb-4 text-primary">
+                                    <i class="bi bi-clipboard-data me-2"></i>Additional Details
+                                </h4>
+
+                                <!-- Image Upload -->
+                                <div class="mb-3">
+                                    <label asp-for="Cover" class="form-label fw-bold">Car Image</label>
+                                    <div class="input-group">
+                                        <input type="file" class="form-control" asp-for="Cover"
+                                               data-rule-extension="@FileSettings.AllowedExtentions.Replace(".",string.Empty)"
+                                               data-msg-extension="Not Allowed Extention"
+                                               data-rule-filesize="@FileSettings.MaxAllowedSizeInBytes"
+                                               data-msg-filesize="Max Size is @FileSettings.MaxAllowedSizeInMB MB" />
+                                        <small class="form-text text-muted">only .jpg .png are allowed .</small>
+                                        <p>
+                                            Please Upload Your Car Image If You Want To Add It As a New Car In Our Website. <br><br>
+                                            <strong>Note:</strong> The Admin Should Agree First Before Your Car Gets Added to Our Website.
+                                        </p>
+
+
+                                    </div>
+                                    <span asp-validation-for="Cover" class="text-danger"></span>
+                                </div>
+
+                                <!-- Price -->
+                                <div class="mb-3">
+                                    <label asp-for="price" class="form-label fw-bold">Predicted Price</label>
+                                    <div class="input-group">
+                                        <span class="input-group-text">$</span>
+                                        <input type="text" class="form-control" asp-for="price"
+                                               
+                                               placeholder="Awaiting prediction..." />
+                                    </div>
+                                    <span asp-validation-for="price" class="text-danger"></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Action Buttons -->
+                <div class="row mt-4">
+                    <div class="col-md-6 d-grid mb-2 mb-md-0">
+                        <button class="btn btn-success btn-lg" asp-controller="Cars" asp-action="edit">
+                            <i class="bi bi-pencil me-2"></i>Submit
+                        </button>
+                    </div>
+                    <div class="col-md-6 d-grid">
+                        <button class="btn btn-primary btn-lg" asp-controller="Cars" asp-action="Index">
+                            <i class="bi bi-arrow-bar-right me-2"></i>Back to home
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<!-- Add Bootstrap Icons -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+
+<style>
+    .form-select, .form-control {
+        transition: all 0.3s ease;
+    }
+
+        .form-select:focus, .form-control:focus {
+            box-shadow: 0 0 0 0.25rem rgba(13, 110, 253, 0.15);
+            border-color: #86b7fe;
+        }
+
+    .card {
+        transition: all 0.3s ease;
+    }
+
+    .btn {
+        transition: all 0.3s ease;
+    }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        }
+
+    .input-group-text {
+        cursor: pointer;
+    }
+</style>
+@section Scripts
+{
+    <partial name="_ValidationScriptsPartial"></partial>
+    <script>
+        $.validator.addMethod('filesize', function (value, element, param) {
+            return this.optional(element) || element.files[0].size <= param;
+
+        });
+
+        $(document).ready(function () {
+            $("#Cover").on('change', function () {
+                $('.cover-preview').attr('src', window.URL.createObjectURL(this.files[0])).removeClass('d-none');
+            });
+        });
+
+    </script>
+}

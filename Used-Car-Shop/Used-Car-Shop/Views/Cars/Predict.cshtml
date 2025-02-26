@@ -1,0 +1,221 @@
+﻿@model Used_Car_Shop.DataTransferObjebt.CarDto
+@{
+    ViewData["Title"] = "Car Price Prediction";
+}
+@if (TempData["Warning"] != null)
+{
+    <div class="container">
+        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+            <i class="bi bi-check-circle me-2"></i>
+            @TempData["Warning"]
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    </div>
+}
+<div class="container py-5">
+    <div class="card shadow-lg border-0 rounded-3">
+        <div class="card-header bg-primary text-white p-4">
+            <h2 class="mb-0">
+                <i class="bi bi-calculator me-2"></i>
+                Car Price Prediction
+            </h2>
+        </div>
+
+        <div class="card-body p-4">
+            <form asp-controller="Cars" asp-action="PredictCarPrice" method="post">
+                <div class="row g-4">
+                    <!-- Left Column -->
+                    <div class="col-md-6">
+                        <div class="card h-100 bg-light border-0">
+                            <div class="card-body">
+                                <h4 class="card-title mb-4 text-primary">
+                                    <i class="bi bi-car-front me-2"></i>Car Details
+                                </h4>
+
+                                <!-- Brand -->
+                                <div class="mb-3">
+                                    <label asp-for="BrandId" class="form-label fw-bold">Brand</label>
+                                    <select id="MySelect1" class="form-select form-select-lg" asp-for="BrandId" asp-items="ViewBag.CarBrands" >                                      
+                                    </select>
+                                    <span asp-validation-for="BrandId" class="text-danger"></span>
+                                </div>
+
+                                <!-- Model -->
+                                <div class="mb-3">
+                                    <label asp-for="ModelId" class="form-label fw-bold">Model</label>
+                                    <select id="MySelect2" class="form-select form-select-lg" asp-for="ModelId" asp-items="ViewBag.CarModels" >                                                                      
+                                    </select>
+                                    <span asp-validation-for="ModelId" class="text-danger"></span>
+                                </div>
+
+                                <!-- Transmission -->
+                                <div class="mb-3">
+                                    <label asp-for="tranmission" class="form-label fw-bold">Automatic</label>
+                                    <select id="MySelect3" class="form-select form-select-lg" asp-for="tranmission" >
+                                        <option value="">Select Transmission</option>
+                                        <option>Yes</option>
+                                        <option>No</option>
+                                    </select>
+                                    <span asp-validation-for="tranmission" class="text-danger"></span>
+                                </div>
+
+                                <!-- Engine Type -->
+                                <div class="mb-3">
+                                    <label asp-for="AirConditioner" class="form-label fw-bold">AirConditioner</label>
+                                    <select id="MySelect4" class="form-select form-select-lg" asp-for="AirConditioner">
+                                        <option value="">Select Engine Type</option>
+                                        <option>Yes</option>
+                                        <option>No</option>
+                              
+                                    </select>
+                                    <span asp-validation-for="AirConditioner" class="text-danger"></span>
+                                </div>
+                                <div class=" mb-3">
+                                    <p>
+                                        This prediction is based on car prices in the Egyptian market in 2024.<br><br>
+                                        <strong>Note:</strong> Our model estimates your car's price with <strong>92% accuracy</strong>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Right Column -->
+                    <div class="col-md-6">
+                        <div class="card h-100 bg-light border-0">
+                            <div class="card-body">
+                                <h4 class="card-title mb-4 text-primary">
+                                    <i class="bi bi-info-circle me-2"></i>Additional Information
+                                </h4>
+
+                                <!-- Fuel Type -->
+                                <div class="mb-3">
+                                    <label asp-for="PowerSteering" class="form-label fw-bold">PowerSteering</label>
+                                    <select class="form-select form-select-lg" asp-for="PowerSteering">
+                                        <option value="">PowerSteering</option>
+                                        <option>Yes</option>
+                                        <option>No</option>
+                                
+                                    </select>
+                                    <span asp-validation-for="PowerSteering" class="text-danger"></span>
+                                </div>
+
+                                <!-- Year and Mileage -->
+                                <div class="row">
+                                    <div class="col-md-6 mb-3">
+                                        <label asp-for="year" class="form-label fw-bold">Year</label>
+                                        <input type="text" class="form-control form-control-lg" asp-for="year" placeholder="Enter Year" />
+                                        <span asp-validation-for="year" class="text-danger"></span>
+                                    </div>
+                                    <div class="col-md-6 mb-3">
+                                        <label asp-for="milage" class="form-label fw-bold">Mileage</label>
+                                        <input type="text" class="form-control form-control-lg" asp-for="milage" placeholder="Enter Mileage" />
+                                        <span asp-validation-for="milage" class="text-danger"></span>
+                                    </div>
+                                </div>
+
+                                <!-- Condition Fields -->
+                                <div class="row">
+                                    <div class="col-md-6 mb-3">
+                                        <label asp-for="RemoteControl" class="form-label fw-bold">Car RemoteControl</label>
+                                        <select class="form-select form-select-lg" asp-for="RemoteControl">
+                                            <option value="">Select</option>
+                                            <option>Yes</option>
+                                            <option>No</option>
+                                          
+                                        </select>
+                                        <span asp-validation-for="RemoteControl" class="text-danger"></span>
+                                    </div>
+                                    <div class="col-md-6 mb-3">
+                                        <label asp-for="Gov" class="form-label fw-bold">Covernment</label>
+                                        <select class="form-select form-select-lg" asp-for="Gov" asp-items="ViewBag.CarGov">
+                                            <option value="">Select</option>
+                                           
+                                        </select>
+                                        <span asp-validation-for="Gov" class="text-danger"></span>
+                                    </div>
+                                </div>
+
+                                <!-- Predicted Price -->
+                                <div class="mb-3">
+                                    <label asp-for="price" class="form-label fw-bold">Predicted Price</label>
+                                    <div class="input-group input-group-lg">
+                                        <span class="input-group-text">$</span>
+                                        <input type="text" class="form-control" asp-for="price" value="@ViewBag.PredictedPrice" placeholder="Awaiting prediction..." readonly />
+                                    </div>
+                                    <span asp-validation-for="price" class="text-danger"></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Submit Button -->
+                <div class="d-grid gap-2 mt-4">
+                    <button type="submit" class="btn btn-primary btn-lg">
+                        <i class="bi bi-lightning-charge me-2"></i>Predict Price
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<!-- Add this to your layout or view for Bootstrap Icons -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+
+<style>
+    .form-select, .form-control {
+        transition: all 0.3s ease;
+    }
+
+        .form-select:focus, .form-control:focus {
+            box-shadow: 0 0 0 0.25rem rgba(13, 110, 253, 0.15);
+            border-color: #86b7fe;
+        }
+
+    .card {
+        transition: all 0.3s ease;
+    }
+
+    .btn-primary {
+        transition: all 0.3s ease;
+    }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(13, 110, 253, 0.15);
+        }
+</style>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<script>
+    $(document).ready(function () {
+        $("#MySelect2").prop('disabled', true);
+        $("#MySelect1").change(function () {
+            var brandId = $(this).val();
+
+            // Clear and disable Model dropdown if no brand is selected
+            $("#MySelect2").empty().append('<option value="">Select Model</option>').prop('disabled', true);
+
+            if (brandId) {
+                $.ajax({
+                    url: '/Cars/GetModelsByBrand', // Make sure this matches your controller route
+                    type: 'GET',
+                    data: { brandId: brandId },
+                    success: function (data) {
+                        $.each(data, function (index, model) {
+                            $("#MySelect2").append('<option value="' + model.id + '">' + model.name + '</option>');
+                        });
+                        $("#MySelect2").prop('disabled', false); // Enable dropdown
+                    }
+                });
+            }
+        });
+    });
+</script>
+

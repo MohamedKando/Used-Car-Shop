@@ -1,0 +1,88 @@
+﻿@model IEnumerable<OrderToSell>
+@{
+    ViewData["Title"] = "Index";
+}
+
+@if (!Model.Any())
+{
+    <div class="alert alert-dismissible alert-warning">
+
+        <h4 class="alert-heading">Warning!</h4>
+        <p class="mb-0">There is No Games To Show.</p>
+    </div>
+}
+else
+{
+       <div class="mt-5">
+        <table class="table table-bordered border-primary">
+            <tbody>
+                @foreach (var car in Model)
+                {
+                    <tr class="border-1 border-success">
+                        <td>
+                            <div class="row-md-12 d-flex">
+                                <div class="pe-4">
+                                    <img src="@($"/Images/{car.FilePath}")" alt="@car.Brand" style="max-width:90px" />
+                                </div>
+                                <div class="col-md-3 d-flex flex-column justify-content-center ">
+                                    <h4>Brand : @car.Brand.name</h4>
+                                     <h5>Model : @car.Model.name</h5> 
+                                </div>
+                                <div class="col-md-3 d-flex flex-column justify-content-center ">
+                                    <h4>Price : @car.price</h4>
+                                    <h5>Milage : @car.milage</h5>
+                                </div>
+                                <div class="col-md-4 d-flex flex-column justify-content-center ">
+                                    <h4>Added At: @car.Date.ToString("yyyy-MM-dd")</h4>
+                                    <h5>Added By :@car.user?.Email</h5>
+                                </div>
+
+                            </div>
+                        </td>
+                        <td class="align-middle   ">
+                          
+                                <div class="d-flex justify-content-end">
+                                    <a class=" btn btn-success rounded rounded-3 me-2" asp-controller="OrderToSell" asp-action="Add" asp-route-id="@car.Id">
+                                        <i class="bi bi-database-fill-add"></i>
+                                    </a>
+                                <a class="btn btn-danger rounded rounded-3" asp-action="Delete" asp-route-id="@car.Id">
+                                        <i class="bi bi-trash"></i>
+                                    </a>
+                          
+                                </div>
+                            
+                        </td>
+                    </tr>
+                }
+
+            </tbody>
+
+        </table>
+    </div>
+
+}
+<script>
+    function confirmDelete(id) {
+        event.preventDefault(); // Stop the default action (navigation)
+
+        Swal.fire({
+            title: "Are you sure?",
+            text: "This action cannot be undone!",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#d33",
+            cancelButtonColor: "#3085d6",
+            confirmButtonText: "Yes, delete it!"
+        }).then((result) => {
+            if (result.isConfirmed) {
+                window.location.href = '/OrderToSell/Delete/' + id; // Adjust URL if needed
+            }
+        });
+    }
+    function disableAllButtons() {
+        document.querySelectorAll("button").forEach(button => {
+            button.disabled = true;
+        });
+    }
+</script>
+
