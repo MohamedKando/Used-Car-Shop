@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "5vMeEfTzskjnX3c+SeBK51Ov4XdBWNTSbNLJTu6zDjs=",
+  "Hash": "QTCahWV6z6aEO27r917Kv9Vi4R3JN6HU4zWD+0w9kV8=",
   "Source": "Used-Car-Shop",
   "BasePath": "_content/Used-Car-Shop",
   "Mode": "Default",
@@ -1233,6 +1233,25 @@
       "OriginalItemSpec": "C:\\Users\\user\\Documents\\GitHub\\Used-Car-Shop\\Used-Car-Shop\\Used-Car-Shop\\obj\\Debug\\net8.0\\scopedcss\\projectbundle\\Used-Car-Shop.bundle.scp.css"
     },
     {
+      "Identity": "C:\\Users\\user\\Documents\\GitHub\\Used-Car-Shop\\Used-Car-Shop\\Used-Car-Shop\\wwwroot\\AiModelsWeights\\label_encoders.pkl",
+      "SourceId": "Used-Car-Shop",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\user\\Documents\\GitHub\\Used-Car-Shop\\Used-Car-Shop\\Used-Car-Shop\\wwwroot\\",
+      "BasePath": "_content/Used-Car-Shop",
+      "RelativePath": "AiModelsWeights/label_encoders.pkl",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\AiModelsWeights\\label_encoders.pkl"
+    },
+    {
       "Identity": "C:\\Users\\user\\Documents\\GitHub\\Used-Car-Shop\\Used-Car-Shop\\Used-Car-Shop\\wwwroot\\AiModelsWeights\\MLModel.mlnet",
       "SourceId": "Used-Car-Shop",
       "SourceType": "Discovered",
@@ -1250,6 +1269,25 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\AiModelsWeights\\MLModel.mlnet"
+    },
+    {
+      "Identity": "C:\\Users\\user\\Documents\\GitHub\\Used-Car-Shop\\Used-Car-Shop\\Used-Car-Shop\\wwwroot\\AiModelsWeights\\xgb_car_price_model.pkl",
+      "SourceId": "Used-Car-Shop",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\user\\Documents\\GitHub\\Used-Car-Shop\\Used-Car-Shop\\Used-Car-Shop\\wwwroot\\",
+      "BasePath": "_content/Used-Car-Shop",
+      "RelativePath": "AiModelsWeights/xgb_car_price_model.pkl",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\AiModelsWeights\\xgb_car_price_model.pkl"
     },
     {
       "Identity": "C:\\Users\\user\\Documents\\GitHub\\Used-Car-Shop\\Used-Car-Shop\\Used-Car-Shop\\wwwroot\\css\\bootstrap3.min.css",
