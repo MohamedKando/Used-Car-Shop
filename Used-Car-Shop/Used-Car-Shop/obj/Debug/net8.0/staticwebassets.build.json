@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "QTCahWV6z6aEO27r917Kv9Vi4R3JN6HU4zWD+0w9kV8=",
+  "Hash": "eM89FxIis6gmeRfh9tOuiP4H9C2MdLyn2fgZE7VmGGo=",
   "Source": "Used-Car-Shop",
   "BasePath": "_content/Used-Car-Shop",
   "Mode": "Default",
@@ -1383,25 +1383,6 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\favicon.ico"
-    },
-    {
-      "Identity": "C:\\Users\\user\\Documents\\GitHub\\Used-Car-Shop\\Used-Car-Shop\\Used-Car-Shop\\wwwroot\\Images\\0199c49c-1c6d-4de4-a55c-4c36ef448e96.png",
-      "SourceId": "Used-Car-Shop",
-      "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\user\\Documents\\GitHub\\Used-Car-Shop\\Used-Car-Shop\\Used-Car-Shop\\wwwroot\\",
-      "BasePath": "_content/Used-Car-Shop",
-      "RelativePath": "Images/0199c49c-1c6d-4de4-a55c-4c36ef448e96.png",
-      "AssetKind": "All",
-      "AssetMode": "All",
-      "AssetRole": "Primary",
-      "AssetMergeBehavior": "PreferTarget",
-      "AssetMergeSource": "",
-      "RelatedAsset": "",
-      "AssetTraitName": "",
-      "AssetTraitValue": "",
-      "CopyToOutputDirectory": "Never",
-      "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\Images\\0199c49c-1c6d-4de4-a55c-4c36ef448e96.png"
     },
     {
       "Identity": "C:\\Users\\user\\Documents\\GitHub\\Used-Car-Shop\\Used-Car-Shop\\Used-Car-Shop\\wwwroot\\Images\\13ee5081-73b9-4c36-a894-ba74ba254ead.jpg",

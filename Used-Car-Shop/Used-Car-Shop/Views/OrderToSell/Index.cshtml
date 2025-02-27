@@ -1,88 +1,108 @@
 ﻿@model IEnumerable<OrderToSell>
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Manage Selling Requests";
 }
 
-@if (!Model.Any())
-{
-    <div class="alert alert-dismissible alert-warning">
-
-        <h4 class="alert-heading">Warning!</h4>
-        <p class="mb-0">There is No Games To Show.</p>
-    </div>
-}
-else
-{
-       <div class="mt-5">
-        <table class="table table-bordered border-primary">
-            <tbody>
-                @foreach (var car in Model)
-                {
-                    <tr class="border-1 border-success">
-                        <td>
-                            <div class="row-md-12 d-flex">
-                                <div class="pe-4">
-                                    <img src="@($"/Images/{car.FilePath}")" alt="@car.Brand" style="max-width:90px" />
-                                </div>
-                                <div class="col-md-3 d-flex flex-column justify-content-center ">
-                                    <h4>Brand : @car.Brand.name</h4>
-                                     <h5>Model : @car.Model.name</h5> 
-                                </div>
-                                <div class="col-md-3 d-flex flex-column justify-content-center ">
-                                    <h4>Price : @car.price</h4>
-                                    <h5>Milage : @car.milage</h5>
-                                </div>
-                                <div class="col-md-4 d-flex flex-column justify-content-center ">
-                                    <h4>Added At: @car.Date.ToString("yyyy-MM-dd")</h4>
-                                    <h5>Added By :@car.user?.Email</h5>
-                                </div>
-
-                            </div>
-                        </td>
-                        <td class="align-middle   ">
-                          
-                                <div class="d-flex justify-content-end">
-                                    <a class=" btn btn-success rounded rounded-3 me-2" asp-controller="OrderToSell" asp-action="Add" asp-route-id="@car.Id">
-                                        <i class="bi bi-database-fill-add"></i>
-                                    </a>
-                                <a class="btn btn-danger rounded rounded-3" asp-action="Delete" asp-route-id="@car.Id">
-                                        <i class="bi bi-trash"></i>
-                                    </a>
-                          
-                                </div>
-                            
-                        </td>
-                    </tr>
-                }
-
-            </tbody>
-
-        </table>
+<div class="container">
+    <div class="row my-4">
+        <div class="col">
+            <h2 class="text-primary mb-4">
+                <i class="bi bi-car-front"></i> Manage Selling Requests
+            </h2>
+            <p class="text-muted">Review and manage user vehicle listing requests</p>
+        </div>
     </div>
 
-}
+    @if (!Model.Any())
+    {
+        <div class="card shadow-sm border-warning mb-4">
+            <div class="card-body text-center py-5">
+                <i class="bi bi-exclamation-triangle text-warning" style="font-size: 3rem;"></i>
+                <h4 class="mt-3">No Pending Requests</h4>
+                <p class="mb-0 text-muted">There are currently no vehicle listing requests to review.</p>
+            </div>
+        </div>
+    }
+    else
+    {
+        <div class="card shadow-sm border-0 mb-5">
+            <div class="card-header bg-light d-flex justify-content-between align-items-center">
+                <span class="fw-bold"><i class="bi bi-list-check"></i> Pending Requests (@Model.Count())</span>
+
+            </div>
+            <div class="card-body p-0">
+                <div class="table-responsive">
+                    <table class="table table-hover mb-0">
+                        <tbody>
+                            @foreach (var car in Model)
+                            {
+                                <tr>
+                                    <td class="border-0">
+                                        <div class="d-flex align-items-center">
+                                            <div class="car-image-container me-4">
+                                                <img src="@($"/Images/{car.FilePath}")" alt="@car.Brand" class="img-fluid rounded shadow-sm" style="width: 120px; height: 90px; object-fit: cover;" />
+                                            </div>
+                                            <div class="car-details flex-grow-1">
+                                                <div class="row">
+                                                    <div class="col-md-4">
+                                                        <h5 class="fw-bold text-primary mb-1">@car.Brand.name @car.Model.name</h5>
+                                                        <p class="text-muted mb-0">
+                                                            <i class="bi bi-speedometer2 me-1"></i> @car.milage km
+                                                        </p>
+                                                    </div>
+                                                    <div class="col-md-4">
+                                                        <h5 class="fw-bold text-success mb-1">
+                                                            <i class="bi bi-currency-dollar me-1"></i> @car.price.ToString("N0") EGP
+                                                        </h5>
+                                                        <p class="mb-0">
+                                                            <i class="bi bi-calendar2-date me-1"></i>
+                                                            <span class="text-muted">Year:</span> @(car.year)
+                                                        </p>
+                                                    </div>
+                                                    <div class="col-md-4">
+                                                        <p class="mb-0">
+                                                            <i class="bi bi-person-circle me-1"></i>
+                                                            <span class="text-muted">Seller:</span> @(car.user?.Email ?? "Unknown")
+                                                        </p>
+                                                        <p class=" mb-0">
+                                                            <i class="bi bi-calendar3 me-1"></i>
+                                                            <span class="text-muted">Added at:</span> @car.Date.ToString("yyyy-MM-dd")
+                                                        </p>
+                                                     
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="ms-auto">
+                                                <div class="d-flex">
+                                                    <a class="btn btn-success btn-sm me-2" asp-controller="OrderToSell" asp-action="Add" asp-route-id="@car.Id" data-bs-toggle="tooltip" title="Approve Request">
+                                                        <i class="bi bi-check-lg"></i> Approve
+                                                    </a>
+                                                    <a class="btn btn-danger btn-sm" asp-action="Delete" asp-route-id="@car.Id" data-bs-toggle="tooltip" title="Reject Request">
+                                                        <i class="bi bi-x-lg"></i> Reject
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="card-footer bg-light text-center py-2">
+                <small class="text-muted">Showing all pending vehicle listing requests</small>
+            </div>
+        </div>
+    }
+</div>
+
 <script>
-    function confirmDelete(id) {
-        event.preventDefault(); // Stop the default action (navigation)
-
-        Swal.fire({
-            title: "Are you sure?",
-            text: "This action cannot be undone!",
-            icon: "warning",
-            showCancelButton: true,
-            confirmButtonColor: "#d33",
-            cancelButtonColor: "#3085d6",
-            confirmButtonText: "Yes, delete it!"
-        }).then((result) => {
-            if (result.isConfirmed) {
-                window.location.href = '/OrderToSell/Delete/' + id; // Adjust URL if needed
-            }
-        });
-    }
-    function disableAllButtons() {
-        document.querySelectorAll("button").forEach(button => {
-            button.disabled = true;
-        });
-    }
+    // Initialize tooltips
+    document.addEventListener('DOMContentLoaded', function () {
+        var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
+        var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+            return new bootstrap.Tooltip(tooltipTriggerEl)
+        })
+    })
 </script>
-

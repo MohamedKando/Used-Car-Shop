@@ -22,19 +22,26 @@
                 </button>
                 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
                     <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Cars" asp-action="Index">Home</a>
+                        <li class="nav-item mx-1">
+                            <a class="nav-link btn bg-white text-dark fw-medium border border-secondary px-3 d-flex align-items-center" asp-area="" asp-controller="Cars" asp-action="Index">
+                                <i class="bi bi-house-door me-1"></i> Home
+                            </a>
                         </li>
-                  
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Cars" asp-action="Predict">Predict</a>
+
+                        <li class="nav-item mx-1">
+                            <a class="nav-link btn bg-white text-dark fw-medium border border-secondary px-3 d-flex align-items-center" asp-area="" asp-controller="Cars" asp-action="Predict">
+                                <i class="bi bi-graph-up me-1"></i> Predict
+                            </a>
                         </li>
-                         @if (User.IsInRole("Admin"))
-                            {
-                                <li class="nav-item   ">
-                                    <a class="nav-link text-dark" asp-area="" asp-controller="OrderToSell" asp-action="Index">Orders</a>
-                                </li>
-                            }
+
+                        @if (User.IsInRole("Admin"))
+                        {
+                            <li class="nav-item mx-1">
+                                <a class="nav-link btn bg-white text-dark fw-medium border border-secondary px-3 d-flex align-items-center" asp-area="" asp-controller="OrderToSell" asp-action="Index">
+                                    <i class="bi bi-clipboard-check me-1"></i> Orders
+                                </a>
+                            </li>
+                        }
                     </ul>
                     <partial name="_LoginPartial.cshtml"></partial>
                 </div>
